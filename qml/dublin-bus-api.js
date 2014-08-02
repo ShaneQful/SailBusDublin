@@ -12,7 +12,7 @@
 var api = (function () {
     "use strict";
     var routeCache = {},
-        apiBase = "";
+        apiBase=_serverURL;
     function networkCall(url, callback, errorcallback) {
         var request = new XMLHttpRequest();
         request.onreadystatechange = function() {

@@ -41,8 +41,14 @@ Page {
 
     SilicaFlickable {
         anchors.fill: parent
-
         PullDownMenu {
+            MenuItem {
+                text: "Settings"
+                onClicked: {
+                    page.loading = false;
+                    pageStack.push(Qt.resolvedUrl("Settings.qml"));
+                }
+            }
             MenuItem {
                 text: "Open Stop"
                 onClicked: {
@@ -57,6 +63,7 @@ Page {
                     StateLogic.state.openRoute(routenumber.text.toUpperCase().trim(), successRoute, error);
                 }
             }
+            
         }
 
         contentHeight: column.height
@@ -67,7 +74,7 @@ Page {
             PageHeader {
                 title: "Enter Route or Stop Number"
             }
-            TextArea {
+            SearchField {
                 id: routenumber
                 width: parent.width
                 inputMethodHints: Qt.ImhPreferNumbers
