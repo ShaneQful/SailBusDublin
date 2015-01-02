@@ -3,6 +3,7 @@ tail -$(($(wc -l state.js | grep -P -o "\d+") - 1)) state.js > temp
 echo -e "/*global api: false*/\nvar DublinBus = {api: api};" > state.js
 cat temp >> state.js
 sed 's/apiBase \= "";/apiBase \= "http:\/\/localhost:4567";/' dublin-bus-api.js  > temp
+sed 's/apiBase \= "http\:\/\/[0-9:.]\+";/apiBase \= "http:\/\/localhost:4567";/' dublin-bus-api.js  > temp #in case the base is there
 mv temp dublin-bus-api.js
 JSLINTFAILED=$(java -jar jslint4java-2.0.5/jslint4java-2.0.5.jar dublin-bus-api.js state.js tests.js)
 if [ -n "$JSLINTFAILED" ]; then

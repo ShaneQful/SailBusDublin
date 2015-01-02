@@ -83,12 +83,13 @@ var state = (function() {
         }
     }
 
-    function getStopLocation() {
+    function getStopLocation(callback, error) {
         var currentStop = stops.filter(function (s) { return s.number === stop; });
         if(currentStop.length > 0) {
-            return currentStop[0].location;
+            callback(currentStop[0].location);
+        } else {
+            DublinBus.api.getStopLoc(stop, callback, error);
         }
-        return false;
     }
 
     return {

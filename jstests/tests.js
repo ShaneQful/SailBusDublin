@@ -104,7 +104,7 @@
             ok(state.getCurrentRoute() === route, "current route number should be the last inputted");
             //Not guaranteed until backend mocked up properly 
             ok(state.getNumberOfStops() === 91, "should have correct number of stops");
-            ok(state.getNthStopOnRouteString(0) === "6057 - Kilnamanagh Rd", "should have correct stop string");
+            ok(state.getNthStopOnRouteString(0) === "1491 - Griffith Avenue", "should have correct stop string");
             start();
         }, function () {
             ok(false, "Issue occurred check the backend is working if so it's an issue with the js");
@@ -146,9 +146,30 @@
         state.openStop(stop, function () {
             ok(state.getCurrentStop() === stop, "current stop number should be the last inputted");
             //Not guaranteed until backend mocked up properly 
-            var firstBus = state.getBusString(0);
+            var stopData = state.getStopData(),
+                firstBus = state.getBusString(0);
             ok(firstBus.match(/\d+\s-\s(\w|\s|\d)+\s-\s((Due)|\d+\s+min)/)[0] === firstBus, "should have a correct bus tring for the first bus");
+            //Check stop data
+            ok(stopData instanceof Array, "should be an array of buses");
+            ok(stopData[0].destination !== undefined, "should be an array of buses");
+            ok(stopData[0].route !== undefined, "should be an array of buses");
+            ok(stopData[0].time !== undefined, "should be an array of buses");
             start();
+        }, function () {
+            ok(false, "Issue occurred check the backend is working if so it's an issue with the js");
+            start();
+        });
+    });
+
+    asyncTest("Open stop not on a route and check location", function () {
+        state.openStop(1998, function () {
+            state.getStopLocation(function (loc) {
+                ok(loc === "53.343137,-6.280488", "Should have a the right location");
+                start();
+            }, function () {
+                ok(false, "Issue occurred check the backend is working if so it's an issue with the js");
+                start();
+            });
         }, function () {
             ok(false, "Issue occurred check the backend is working if so it's an issue with the js");
             start();
@@ -161,9 +182,13 @@
             ok(state.getCurrentRoute() === route, "current route number should be the last inputted");
             //Not guaranteed until backend mocked up properly 
             state.openStopOnRoute(0, function () {
-                var loc = state.getStopLocation();
-                ok(loc === "53.332997,-6.247035", "Should have a the right location");
-                start();
+                state.getStopLocation(function (loc) {
+                    ok(loc === "53.391118,-6.433484", "Should have a the right location");
+                    start();
+                }, function () {
+                    ok(false, "Issue occurred check the backend is working if so it's an issue with the js");
+                    start();
+                });
             }, function () {
                 ok(false, "Issue occurred check the backend is working if so it's an issue with the js");
                 start();

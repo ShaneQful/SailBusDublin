@@ -39,12 +39,15 @@ Page {
             MenuItem {
                 text: "Open Location"
                 onClicked: {
-                    var loc = Qt.dublinBusState.getStopLocation();
-                    if (loc) {
+                    page.loading = true;
+                    Qt.dublinBusState.getStopLocation(function (loc) {
+                        page.loading = false;
                         Qt.openUrlExternally("geo:" + loc);
-                    }
+                    }, function () {
+                        page.loading = false;
+                        console.log("Error - No location found");
+                    });
                 }
-                visible: Qt.dublinBusState.stopOpenedByRoute
             }
         }
         model: Qt.dublinBusState.getStopData().length
