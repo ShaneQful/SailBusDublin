@@ -24,5 +24,6 @@ OTHER_FILES += \
     rpm/harbour-sailbusdublin.spec \
     harbour-sailbusdublin.desktop \
     harbour-sailbusdublin.png \
-    qml/harbour-sailbusdublin.qml
+    qml/harbour-sailbusdublin.qml \
+    qml/pages/AboutPage.qml
 

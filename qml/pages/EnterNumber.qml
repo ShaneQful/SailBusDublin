@@ -44,6 +44,12 @@ Page {
 
         PullDownMenu {
             MenuItem {
+                text: "About"
+                onClicked: {
+                    pageStack.push(Qt.resolvedUrl("AboutPage.qml"));
+                }
+            }
+            MenuItem {
                 text: "Open Stop"
                 onClicked: {
                     page.loading = true;
