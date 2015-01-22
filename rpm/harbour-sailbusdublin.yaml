@@ -1,9 +1,9 @@
 Name: harbour-sailbusdublin
 Summary: SailBusDublin
-Version: 0.2
-Release: 2
+Version: 0.3
+Release: 3
 Group: Qt/Qt
-URL: http://example.org/
+URL: https://github.com/ShaneQful/SailBusDublin
 License: 'MIT'
 Sources:
 - '%{name}-%{version}.tar.bz2'
