@@ -18,7 +18,8 @@ CoverBackground {
             index = 0,
                 text = "Stop: " + Qt.dublinBusState.getCurrentStop() + "\n";
         for (index = 0; index < length; index++) {
-            text += Qt.dublinBusState.getStopData()[index].route + " - " + Qt.dublinBusState.getStopData()[index].time + " min\n"
+            text += Qt.dublinBusState.getStopData()[index].route + " - " + Qt.dublinBusState.getStopData()[index].time +
+                    (Qt.dublinBusState.getStopData()[index].time !== "Due" ? " min\n" : "\n");
         }
         label.text = text;
         coverPage.loading = false;

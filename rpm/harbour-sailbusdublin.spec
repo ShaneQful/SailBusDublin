@@ -13,8 +13,8 @@ Name:       harbour-sailbusdublin
 %{!?qtc_make:%define qtc_make make}
 %{?qtc_builddir:%define _builddir %qtc_builddir}
 Summary:    SailBusDublin
-Version:    0.3
-Release:    3
+Version:    0.4
+Release:    4
 Group:      Qt/Qt
 License:    MIT
 URL:        https://github.com/ShaneQful/SailBusDublin
