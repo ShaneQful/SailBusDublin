@@ -103,7 +103,7 @@
         state.openRoute(route, function () {
             ok(state.getCurrentRoute() === route, "current route number should be the last inputted");
             //Not guaranteed until backend mocked up properly 
-            ok(state.getNumberOfStops() === 91, "should have correct number of stops");
+            ok(state.getNumberOfStops() === 92, "should have correct number of stops");
             ok(state.getNthStopOnRouteString(0) === "1491 - Griffith Avenue", "should have correct stop string");
             start();
         }, function () {
@@ -183,7 +183,7 @@
             //Not guaranteed until backend mocked up properly 
             state.openStopOnRoute(0, function () {
                 state.getStopLocation(function (loc) {
-                    ok(loc === "53.391118,-6.433484", "Should have a the right location");
+                    ok(loc === "53.332997,-6.247035", "Should have a the right location");
                     start();
                 }, function () {
                     ok(false, "Issue occurred check the backend is working if so it's an issue with the js");
