@@ -27,3 +27,6 @@ OTHER_FILES += \
     qml/harbour-sailbusdublin.qml \
     qml/pages/AboutPage.qml
 
+DISTFILES += \
+    qml/pages/ErrorPage.qml
+

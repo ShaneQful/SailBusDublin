@@ -32,7 +32,7 @@ Page {
                         pageStack.replace(Qt.resolvedUrl("Stop.qml"));
                     }, function() {
                         page.loading = false;
-                        console.log("Error");
+                        pageStack.push(Qt.resolvedUrl("ErrorPage.qml"));
                     });
                 }
             }

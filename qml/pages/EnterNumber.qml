@@ -30,7 +30,7 @@ Page {
 
     function error() {
         page.loading = false;
-        console.log("Error");
+        pageStack.push(Qt.resolvedUrl("ErrorPage.qml"));
     }
 
     BusyIndicator {
