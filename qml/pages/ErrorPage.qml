@@ -27,7 +27,7 @@ Page {
             width: page.width
             spacing: Theme.paddingLarge
             PageHeader {
-                title: "Error Contacting Backend"
+                title: Qt.dublinBusState.getLastError() || "Error Contacting Backend"
             }
             Text {
                 width: parent.width - 2*Theme.paddingLarge
@@ -39,7 +39,7 @@ Page {
                 linkColor: Theme.highlightColor
                 font.pixelSize: Theme.fontSizeSmall
                 onLinkActivated: Qt.openUrlExternally(link)
-                text: "There was an issue contacting the backend, please log an issue if the issue persists. <br><br>
+                text: Qt.dublinBusState.getLastError() || "There was an issue contacting the backend, please log an issue if the issue persists. <br><br>
 <a href=\"https://github.com/ShaneQful/SailBusDublin/issues/\">Issue Tracker</a><br>
 "
             }

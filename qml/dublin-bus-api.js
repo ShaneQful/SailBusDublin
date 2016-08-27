@@ -12,7 +12,8 @@
 var api = (function () {
     "use strict";
     var routeCache = {},
-        apiBase = "";
+        commonParams = "?format=json&operator=bac",
+        apiBase = "http://www.dublinked.ie/cgi-bin/rtpi/";
     function networkCall(url, callback, errorcallback) {
         var request = new XMLHttpRequest();
         request.onreadystatechange = function() {
@@ -29,7 +30,7 @@ var api = (function () {
     }
 
     function getStopData(number, callback, errorCallback) {
-        networkCall(apiBase + "/bus/stop/" + number, function (response) {
+        networkCall(apiBase + "realtimebusinformation" + commonParams + "&stopid=" + number , function (response) {
             var responseJSON = JSON.parse(response),
                 buses = [],
                 i = 0;
@@ -49,7 +50,7 @@ var api = (function () {
     }
 
     function getStopLoc(number, callback, errorCallback) {
-        networkCall(apiBase + "/location/stop/" + number, function (response) {
+        networkCall(apiBase + "busstopinformation" + commonParams + "&stopid=" + number, function (response) {
             var responseJSON = JSON.parse(response),
                 stopInfo;
             if(responseJSON.errorcode === "0") {
@@ -65,7 +66,7 @@ var api = (function () {
 
     function getRouteData(number, callback, errorCallback) {
         if(!routeCache[number]) {
-            networkCall(apiBase + "/bus/route/" + number, function (response) {
+            networkCall(apiBase + "routeinformation" + commonParams + "&routeid=" + number, function (response) {
                 var responseJSON = JSON.parse(response),
                     stops = [];
                 if(responseJSON.errorcode === "0") {

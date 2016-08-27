@@ -18,8 +18,9 @@ Page {
         pageStack.push(Qt.resolvedUrl("Stop.qml"));
     }
 
-    function error() {
+    function error(err) {
         page.loading = false;
+        Qt.dublinBusState.setLastError(err);
         pageStack.push(Qt.resolvedUrl("ErrorPage.qml"));
     }
 

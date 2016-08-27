@@ -15,7 +15,7 @@
 var state = (function() {
     "use strict";
     var stops = [],
-        stop, stopData, routeNumber;
+        stop, stopData, routeNumber, lastError;
 
     function openRoute(number, changePageCallback, error) {
         routeNumber = number;
@@ -103,6 +103,8 @@ var state = (function() {
         getCurrentStop: getCurrentStop,
         getStopData: getStopData,
         getBusString: getBusString,
-        getStopLocation: getStopLocation
+        getStopLocation: getStopLocation,
+        setLastError: function (err) { lastError = err; },
+        getLastError: function () { return lastError; }
     };
 }());
